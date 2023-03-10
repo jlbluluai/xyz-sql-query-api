@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: dev
+
+  mvc:
+    servlet:
+      # 设置为正整数，启动时就会初始化DispatcherServlet，否则默认的-1只会等到第一次请求才会初始化
+      load-on-startup: 1
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+
+  datasource:
+    username: root
+    url: jdbc:mysql://127.0.0.1:3306/xyz_test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&allowMultiQueries=true
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
