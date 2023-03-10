@@ -8,8 +8,6 @@ public class JsonResult {
 
     private String desc;
 
-    private String cost;
-
     public Object getData() {
         return data;
     }
@@ -32,14 +30,6 @@ public class JsonResult {
 
     public void setDesc(String desc) {
         this.desc = desc;
-    }
-
-    public String getCost() {
-        return cost;
-    }
-
-    public void setCost(String cost) {
-        this.cost = cost;
     }
 
     public static JsonResult builder(int status, String desc) {

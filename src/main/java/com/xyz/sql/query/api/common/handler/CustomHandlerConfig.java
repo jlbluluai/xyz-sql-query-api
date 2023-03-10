@@ -33,6 +33,11 @@ public class CustomHandlerConfig implements InitializingBean {
         List<HandlerMethodReturnValueHandler> returnValueHandlers = requestMappingHandlerAdapter.getReturnValueHandlers();
         List<HandlerMethodReturnValueHandler> list = Lists.newArrayList();
         HandlerMethodReturnValueHandler autoResultReturnHandler = new AutoResultReturnHandler();
+        list.add(autoResultReturnHandler);
+        if (returnValueHandlers != null) {
+            list.addAll(returnValueHandlers);
+        }
+        requestMappingHandlerAdapter.setReturnValueHandlers(list);
         log.info("BaseWebMvcConfig expand return value handler end");
     }
 

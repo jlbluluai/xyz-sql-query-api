@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.xyz.sql.query.api.common.exception.BusinessException;
 import com.xyz.sql.query.api.common.handler.returnn.JsonResult;
 import com.xyz.sql.query.api.common.param.ActionStatus;
-import com.xyz.sql.query.api.common.param.BaseConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
@@ -51,18 +50,11 @@ public abstract class AutoResultReturnSupports {
             jsonResult.setData(o);
             jsonResult.setStatus(ActionStatus.OK.getValue());
             jsonResult.setDesc(ActionStatus.OK.getReason());
-            // 取出开始时间 计算耗费
-            Long startTime = BaseConstant.START_TIME.get();
-            if (startTime != null) {
-                jsonResult.setCost(System.currentTimeMillis() - startTime + "ms");
-            }
             writer.print(JSON.toJSONString(jsonResult));
             writer.flush();
         } catch (IOException e) {
             LOGGER.error("AutoResultReturnHandler io handler ex ", e);
             throw new BusinessException("服务器开小差，请稍后再试");
-        } finally {
-            BaseConstant.START_TIME.remove();
         }
     }
 }
